@@ -8,7 +8,7 @@ var session = new sp.Session({
 
 var path = __dirname + '/test_downloads';
 
-session.login('alexperezpaya', 'alejandro28660');
+session.login(config.user, config.password);
 
 session.once('login', function(err) {
     if(err) this.emit('error', err);
