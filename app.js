@@ -1,45 +1,45 @@
-var sp = require('libspotify');
 var async = require('async');
-var downloadTrack = require(__dirname + '/lib/download_track');
+var config = require(__dirname + '/config.json');
 
-var session = new sp.Session({
-    applicationKey: __dirname + '/spotify_appkey.key'
-});
+var argv = require('minimist')(process.argv.slice(2));
 
 var path = __dirname + '/test_downloads';
+var Spotify = require(__dirname + '/lib/spotify');
 
-session.login(config.user, config.password);
+var switchCb = function (err) {
+    if(err){
+        console.log(err);
+    }
 
-session.once('login', function(err) {
-    if(err) this.emit('error', err);
-    
-    console.log('Logged');
-
-    var playlist = sp.Playlist.getFromUrl('spotify:user:alexperezpaya:playlist:12vj5rxbMakEJHWk2s7Y9p');
-
-    playlist.whenReady(function (){
-        
-        console.log('Ready')
-        
-        playlist.getTracks(function (tracks){
-            
-            //console.log('Downloading ' + tracks.length + ' tracks in playlist');
-
-            async.mapSeries(tracks, function (track, callback){
-                
-                downloadTrack(track, session, path, callback);
-
-            }, function (err){
-                console.log(err);
-            });
-
-        });
-    });
-
-});
-
-session.on('error', function (err){
-    console.log(err);
-    session.close();
     process.exit();
+}
+
+Spotify(config.username, config.password, function (err, spotify){
+
+    switch (argv._[0]){
+
+        case 'config':
+            break;
+        case 'playlist':
+            if(!argv._[1]){
+                console.log('You must provide a playlist url');
+                process.exit();
+            }
+            spotify.downloadPlaylistByUrl(argv._[1], path, switchCb);
+            break;
+        case 'track':
+            if(!argv._[1]){
+                console.log('You must provide a track url');
+                process.exit();
+            }
+            spotify.getTrackByUrl(argv._[1], path, switchCb);
+            break;
+        case 'search':
+            break;
+        default:
+            console.log('Use `$ spotijay help` to list different commands');
+            process.exit();
+
+    }
+
 });

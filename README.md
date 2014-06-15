@@ -14,6 +14,15 @@ Install libspotify
 If you are a Mac user:
 `brew install libspotify`
 
+Install lame
+`brew install lame`
+
+Install sox
+`brew install sox`
+Install eyeD3
+
+`sudo pip install eyeD3`
+
 If not check this: [http://docs.mopidy.com/en/v0.8.1/installation/libspotify/](http://docs.mopidy.com/en/v0.8.1/installation/libspotify/)
 
 Copy your appkey in the root of the dir.
