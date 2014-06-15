@@ -1,10 +1,13 @@
 var async = require('async');
-var config = require(__dirname + '/config.json');
+var fs = require('fs');
 
-var argv = require('minimist')(process.argv.slice(2));
+var configPath = __dirname + '/config.json';
+var config = require(configPath);
 
 var path = __dirname + '/test_downloads';
 var Spotify = require(__dirname + '/lib/spotify');
+
+var argv = require('minimist')(process.argv.slice(2));
 
 var switchCb = function (err) {
     if(err){
@@ -17,8 +20,25 @@ var switchCb = function (err) {
 Spotify(config.username, config.password, function (err, spotify){
 
     switch (argv._[0]){
+        case 'help':
+            console.log('helping');
 
         case 'config':
+            
+            var user = argv['u'] || argv['username'] || argv['user']
+            var pass = argv['p'] || argv['password'] || argv['pass']
+            
+            var newConf = config;
+
+            if(user){
+                newConf.username = user;
+            }
+
+            if(pass){
+                newConf.password = pass;
+            }
+            fs.writeFileSync(configPath, JSON.stringify(newConf));
+            process.exit();
             break;
         case 'playlist':
             if(!argv._[1]){
