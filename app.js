@@ -4,7 +4,7 @@ var fs = require('fs');
 var configPath = __dirname + '/config.json';
 var config = require(configPath);
 
-var path = __dirname + '/test_downloads';
+var path = config.dirname;
 var Spotify = require(__dirname + '/lib/spotify');
 
 var argv = require('minimist')(process.argv.slice(2));
@@ -28,6 +28,8 @@ Spotify(config.username, config.password, function (err, spotify){
             var user = argv['u'] || argv['username'] || argv['user']
             var pass = argv['p'] || argv['password'] || argv['pass']
             
+            var dir = argv['d'] || argv['dir'] || argv['dirname']
+
             var newConf = config;
 
             if(user){
@@ -37,6 +39,13 @@ Spotify(config.username, config.password, function (err, spotify){
             if(pass){
                 newConf.password = pass;
             }
+
+            if(dir){
+                if (dir == '.'){dir = process.cwd()} else if (dir.substring(0, 0) !== '/'){dir = process.cwd() + '/' + dir}
+                console.log('Download path set to: ' + dir);
+                newConf.dirname = dir;
+            }
+
             fs.writeFileSync(configPath, JSON.stringify(newConf));
             process.exit();
             break;
