@@ -1,19 +1,17 @@
-var async = require('async');
-var fs = require('fs');
+var async = require('async'),
+    fs = require('fs');
 
-var configPath = __dirname + '/config.json';
-var config = require(configPath);
+var configPath = __dirname + '/config.json',
+    config = require(configPath),
+    path = config.dirname;
 
-var path = config.dirname;
 var Spotify = require(__dirname + '/lib/spotify');
 
 var argv = require('minimist')(process.argv.slice(2));
 
-var switchCb = function (err) {
-    if(err){
+function switchCb(err) {
+    if (err)
         console.log(err);
-    }
-
     process.exit();
 }
 
@@ -32,13 +30,8 @@ Spotify(config.username, config.password, function (err, spotify){
 
             var newConf = config;
 
-            if(user){
-                newConf.username = user;
-            }
-
-            if(pass){
-                newConf.password = pass;
-            }
+            newConf.username = user || newConf.username;
+            newConf.password = pass || newConf.password;
 
             if(dir){
                 if (dir == '.'){dir = process.cwd()} else if (dir.substring(0, 0) !== '/'){dir = process.cwd() + '/' + dir}

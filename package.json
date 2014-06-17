@@ -26,6 +26,11 @@
       "name": "Alejandro Perezpayá",
       "email": "alejandro@perezpaya.net",
       "url": "http://perezpaya.net"
+    },
+    {
+      "name": "Luis Iván Cuende",
+      "email": "me@luisivan.net",
+      "url": "http://luisivan.net"
     }
   ],
   "main": "app.js",
