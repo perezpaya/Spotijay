@@ -1,31 +1,30 @@
 Spotijay
 ========
 
-Useful tool to allow dejays to get tracks from their premium subscription in 320kbps and keep them synced
+Useful tool to allow DJs to get tracks from their premium subscription in 320kbps and keep them synced
 
-# Instalation
+# Installation
 
 Clone this repo
 
 `git clone git@github.com:alexperezpaya/Spotijay.git`
 
-Install libspotify
+## Mac
 
-If you are a Mac user:
-`brew install libspotify`
-
-Install lame
-`brew install lame`
-
-Install sox
-`brew install sox`
-Install eyeD3
-
+`brew install libspotify lame sox`
 `sudo pip install eyeD3`
 
-If not check this: [http://docs.mopidy.com/en/v0.8.1/installation/libspotify/](http://docs.mopidy.com/en/v0.8.1/installation/libspotify/)
+## Arch Linux
 
-Copy your appkey in the root of the dir.
+`yaourt -S libspotify python2-eyed3 lame sox`
+
+## Others
+
+Check this: [http://docs.mopidy.com/en/v0.8.1/installation/libspotify/](http://docs.mopidy.com/en/v0.8.1/installation/libspotify/)
+
+## Keys
+
+Copy your [appkey](https://developer.spotify.com/my-account/keys) in the root of the dir.
 
 `cd spotijay`
 `npm install`
