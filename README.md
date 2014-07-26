@@ -11,8 +11,7 @@ Clone this repo
 
 ## Mac
 
-`brew install libspotify lame sox`
-`sudo pip install eyeD3`
+`brew install homebrew/binary/libspotify lame sox eyeD3`
 
 ## Arch Linux
 
