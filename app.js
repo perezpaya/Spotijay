@@ -29,6 +29,7 @@ function switchCb(err) {
 }
 
 var cmd = (argv['h']) ? 'help' : argv._[0]; 
+
 switch (cmd){
     case 'help':
         console.log('Help disabled by the moment');
