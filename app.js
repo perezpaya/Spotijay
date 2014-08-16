@@ -1,5 +1,6 @@
 var async = require('async'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
 
 var configPath = __dirname + '/config.json';
 
@@ -16,7 +17,7 @@ catch (e){
     }
 }
 
-var path = config.dirname;
+var downloadPath = config.dirname;
 
 var Spotify = require(__dirname + '/lib/spotify');
 
@@ -48,14 +49,16 @@ switch (cmd){
         newConf.username = user || newConf.username;
         newConf.password = pass || newConf.password;
 
-        if(dir){
+        if(dir && typeof dir == 'string'){
             if (dir == '.'){dir = process.cwd()} else if (dir.substring(0, 0) !== '/'){dir = process.cwd() + '/' + dir}
+            dir = path.resolve(dir);
             console.log('Download path set to: ' + dir);
             newConf.dirname = dir;
         }
 
-        if(copyDestiny){
+        if(copyDestiny && typeof copyDestiny == 'string'){
             if (copyDestiny == '.'){copyDestiny = process.cwd()} else if (copyDestiny.substring(0, 0) !== '/'){copyDestiny = process.cwd() + '/' + copyDestiny}
+            copyDestiny = path.resolve(copyDestiny);
             console.log('Copy path: ' + copyDestiny);
             newConf.copy = copyDestiny;
         }
@@ -70,7 +73,7 @@ switch (cmd){
         }
 
         Spotify(config.username, config.password, function (err, spotify){
-            spotify.downloadPlaylistByUrl(argv._[1], path, switchCb);
+            spotify.downloadPlaylistByUrl(argv._[1], downloadPath, switchCb);
         });
         break;
     case 'track':
@@ -79,7 +82,7 @@ switch (cmd){
             process.exit();
         }
         Spotify(config.username, config.password, function (err, spotify){
-            spotify.getTrackByUrl(argv._[1], path, switchCb);
+            spotify.getTrackByUrl(argv._[1], downloadPath, switchCb);
         });
         break;
     case 'search':
