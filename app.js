@@ -44,6 +44,8 @@ switch (cmd){
 
         var copyDestiny = argv['c'] || argv['cop'] || argv['copy'];
 
+        var itunes = argv['itunes'];
+
         var newConf = config;
 
         newConf.username = user || newConf.username;
@@ -61,6 +63,12 @@ switch (cmd){
             copyDestiny = path.resolve(copyDestiny);
             console.log('Copy path: ' + copyDestiny);
             newConf.copy = copyDestiny;
+        }
+
+        if(itunes == 'true'){
+            newConf.itunes = true;
+        } else if (itunes == 'false'){
+            newConf.itunes = false;
         }
 
         fs.writeFileSync(configPath, JSON.stringify(newConf));
@@ -91,6 +99,8 @@ switch (cmd){
     case 'clean':
         require('child_process').exec('cd '+ config.dirname +' && rm -rf *.png *.wav *.raw', function (err, stdout) {
             console.log(err || 'Cleaned');
+            if(err) process.exit(1)
+            process.exit(0)
         });
         break;
 
