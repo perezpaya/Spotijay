@@ -44,10 +44,10 @@ switch (cmd){
         console.log('   -d | --dirname  | --dir ' + ' Set download path')
 
         console.log('track - Downloads a single track in preselected dirname')
-        console.log('spotijay track [spotify:trackUrl]')
+        console.log('spotijay track [spotify:trackUrl]\n')
 
         console.log('playlist - Downloads a tracks inside playlist in preselected dirname')
-        console.log('spotijay playlist [spotify:playlistUrl]')
+        console.log('spotijay playlist [spotify:playlistUrl]\n')
 
         console.log('clean - Performs clean of non-converted raw audio files or album covers')
 
