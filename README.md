@@ -26,6 +26,25 @@ Check this: [http://docs.mopidy.com/en/v0.8.1/installation/libspotify/](http://d
 Copy your [appkey](https://developer.spotify.com/my-account/keys) in the root of the dir.
 
 `cd spotijay`
+
 `npm install`
+
+Run help to get help configuring your setup
+`node app.js help`
+
+
+#Sync your playlists in background and forget about crashes interrupting your download
+```shell
+node app.js -u ramona123 -p m@ric@rmen -d ~/music_download
+# We have now our config ready
+
+# We now install forever to run this in the background and sync our playlists whenever we add music
+npm install -g forever
+
+forever start app.js playlist [spotify:playlistUrl]
+
+# This will go to the background and we can go to sleep while our music is getting downloaded in 320kpbs
+
+```
 
 And done.
