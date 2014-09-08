@@ -35,13 +35,13 @@ Run help to get help configuring your setup
 
 #Sync your playlists in background and forget about crashes interrupting your download
 ```shell
-node app.js -u ramona123 -p m@ric@rmen -d ~/music_download
+node app.js config -u ramona123 -p m@ric@rmen -d ~/music_download
 # We have now our config ready
 
 # We now install forever to run this in the background and sync our playlists whenever we add music
 npm install -g forever
 
-forever start app.js playlist [spotify:playlistUrl]
+forever start app.js playlist spotify:playlistURI
 
 # This will go to the background and we can go to sleep while our music is getting downloaded in 320kpbs
 
