@@ -1,7 +1,7 @@
 Spotijay
 ========
 
-Useful tool to allow DJs to get tracks from their premium subscription in 320kbps and keep them synced
+Useful tool that allows to get tracks from your premium spotify subscription in 320kbps and keep them synced
 
 # Installation
 
