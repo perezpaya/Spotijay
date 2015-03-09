@@ -1,6 +1,9 @@
 Spotijay
 ========
 
+# Spoiler
+I'm not even proud of this. This code its ugly and unmaintainable. This was developed quickly to get songs from spotify to do some remixes and get them in wav/mp3. I'm not writing more code here because I probably re-write this in Golang. Feel free to do what ever you want with this code
+
 Useful tool that allows to get tracks from your premium spotify subscription in 320kbps and keep them synced
 
 # Installation
