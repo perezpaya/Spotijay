@@ -37,7 +37,7 @@ Run help to get help configuring your setup
 `node app.js help`
 
 
-#Sync your playlists in background and forget about crashes interrupting your download
+# Sync your playlists in background and forget about crashes interrupting your download
 ```shell
 node app.js config -u ramona123 -p m@ric@rmen -d ~/music_download
 # We have now our config ready
